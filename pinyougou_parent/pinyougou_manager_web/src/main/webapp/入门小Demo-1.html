@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>入门小Demo-1</title>
+    <script src="plugins/angularjs/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('ctrl',function ($scope) {
+            $scope.demo=function () {
+                return $scope.names;
+            }
+        })
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="ctrl">
+<input ng-model="names">
+{{demo()}}
+
+</body>
+</html>

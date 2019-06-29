@@ -31,14 +31,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="pinyougou_common" />
-    <orderEntry type="library" name="Maven: com.janeluo:ikanalyzer:2012_u6" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queryparser:4.7.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-queries:4.7.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-sandbox:4.7.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers-common:4.7.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.lucene:lucene-core:5.5.1" level="project" />
-    <orderEntry type="module" module-name="pinyougou_sellergoods_interface" />
     <orderEntry type="module" module-name="pinyougou_pojo" />
+    <orderEntry type="module" module-name="pinyougou_sellergoods_interface" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.2.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: aopalliance:aopalliance:1.0" level="project" />

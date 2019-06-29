@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>入门小Demo-3</title>
+    <script src="plugins/angularjs/angular.min.js"></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('myController',function ($scope) {
+            $scope.list=[100,200,300,400,500]
+        })
+    </script>
+</head>
+<body ng-app="app" ng-controller="myController">
+<table>
+    <tr ng-repeat="x in list">
+        <td>
+            {{x}}
+        </td>
+    </tr>
+</table>
+</body>
+</html>

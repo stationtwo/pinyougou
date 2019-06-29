@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>入门小Demo-4</title>
+    <script src="./plugins/angularjs/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myController', function ($scope, $http) {
+            $scope.findAll = function () {
+                $http.get('brand/findAll.do').success(function (data) {
+                    $scope.list = data;
+                })
+            }
+        });
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myController" ng-init="findAll()">
+<table ng-repeat="entity in list">
+    <tr>
+        <td>
+            {{entity.id}}
+        </td>
+        <td>
+            {{entity.name}}
+        </td>
+        <td>
+            {{entity.firstChar}}
+        </td>
+    </tr>
+</table>
+</body>
+</html>
