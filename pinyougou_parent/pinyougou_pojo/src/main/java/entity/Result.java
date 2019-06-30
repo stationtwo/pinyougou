@@ -2,16 +2,16 @@ package entity;
 
 import java.io.Serializable;
 
-public class ResultInfo implements Serializable {
+public class Result implements Serializable {
     private boolean success;
     private String message;
 
-    public ResultInfo(boolean success, String message) {
+    public Result(boolean success, String message) {
         this.success = success;
         this.message = message;
     }
 
-    public ResultInfo() {
+    public Result() {
     }
 
     public boolean isSuccess() {

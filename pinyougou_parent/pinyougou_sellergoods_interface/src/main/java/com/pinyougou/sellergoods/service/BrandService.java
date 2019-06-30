@@ -2,7 +2,7 @@ package com.pinyougou.sellergoods.service;
 
 import com.pinyougou.pojo.TbBrand;
 import entity.PageResult;
-import entity.ResultInfo;
+import entity.Result;
 
 import java.util.List;
 
@@ -27,5 +27,35 @@ public interface BrandService {
      * @param brand
      * @return
      */
-    public ResultInfo saveBrand(TbBrand brand);
+    public Result saveBrand(TbBrand brand);
+
+    /**
+     * 根据id查询一个品牌对象
+     * @param idList
+     * @return
+     */
+    TbBrand getBrandById(Long idList);
+
+    /**
+     * 修改品牌对象
+     * @param brand
+     * @return
+     */
+    Result updateBrand(TbBrand brand);
+
+    /**
+     * 批量删除
+     * @param id
+     * @return
+     */
+    Result removeBrand(Long[] id);
+
+    /**
+     * 根据条件分页查询
+     * @param brand
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    PageResult listBrandByExample(TbBrand brand,Integer pageNum, Integer pageSize);
 }

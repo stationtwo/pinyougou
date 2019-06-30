@@ -90,13 +90,10 @@
             <artifactId>servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-
-
     </dependencies>
-
-
     <build>
         <plugins>
+            <!--            tomcat-->
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>

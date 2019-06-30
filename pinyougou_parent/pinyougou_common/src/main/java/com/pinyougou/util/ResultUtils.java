@@ -1,8 +1,6 @@
 package com.pinyougou.util;
 
-import entity.ResultInfo;
-
-import java.io.Serializable;
+import entity.Result;
 
 public class ResultUtils{
 
@@ -25,11 +23,11 @@ public class ResultUtils{
      * @param count
      * @return
      */
-    public static ResultInfo msg(int count) {
+    public static Result msg(int count) {
         if (isIntThanZero(count)) {
-            return new ResultInfo(true, "操作成功");
+            return new Result(true, "操作成功");
         }
-        return new ResultInfo(false,"操作失败");
+        return new Result(false,"操作失败");
     }
 
     /**
@@ -38,14 +36,14 @@ public class ResultUtils{
      * @param count
      * @return
      */
-    public static ResultInfo msg(Object[] total, int count) {
+    public static Result msg(Object[] total, int count) {
         if(total.length == count){
-            return new ResultInfo(true, "");
+            return new Result(true, count+"条数据已全部移除");
         }else{
             if(isIntThanZero(count)){
-                return new ResultInfo(false, "本次共处理：" + String.valueOf(total.length) + "条，成功：" + String.valueOf(count) + "条！");
+                return new Result(false, "本次共处理：" + String.valueOf(total.length) + "条，成功：" + String.valueOf(count) + "条！");
             }else{
-                return new ResultInfo(false, "删除操作失败");
+                return new Result(false, "删除操作失败");
             }
         }
     }
