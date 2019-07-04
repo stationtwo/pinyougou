@@ -1,4 +1,6 @@
 package com.pinyougou.manager.controller;
+import java.util.List;
+import java.util.Map;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbBrand;
@@ -8,10 +10,7 @@ import entity.PageResult;
 import entity.Result;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/brand")
@@ -20,12 +19,23 @@ public class BrandController {
     @Reference
     private BrandService brandService;
 
+    /**
+     * 查询所有 (包含模糊查询和分页)
+     * @param brand
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("/findPage")
     public PageResult findPage(@RequestBody(required = false) TbBrand brand, Integer pageNum, Integer pageSize){
         return brandService.listBrandByExample(brand,pageNum, pageSize);
     }
 
-
+    /**
+     * 删除方法
+     * @param idList
+     * @return
+     */
     @RequestMapping("/removeBrand")
     public Result removeBrand(Long[] idList) {
         if (!ObjectUtils.notEmpty(idList)) {
@@ -40,7 +50,7 @@ public class BrandController {
     }
 
     /**
-     * 修改品牌对象
+     * 修改对象
      * @param brand
      * @return
      */
@@ -48,12 +58,6 @@ public class BrandController {
     public Result updateBrand(@RequestBody(required = false) TbBrand brand) {
         if (!ObjectUtils.notEmpty(brand)) {
             return new Result(false, "对象不存在");
-        }
-        if (ObjectUtils.isEmpty(brand.getName())) {
-            return new Result(false, "品牌名不能为空");
-        }
-        if (ObjectUtils.isEmpty(brand.getFirstChar())) {
-            return new Result(false, "首字母填写不正确,应为一个字母");
         }
         try {
             return brandService.updateBrand(brand);
@@ -64,16 +68,16 @@ public class BrandController {
     }
 
     /**
-     * 根据id查询品牌
+     * 根据id查询
      * @return
      */
     @RequestMapping("/findOne")
     public TbBrand findOne(Long id){
         return brandService.getBrandById(id);
-    }
-
+	}
+	
     /**
-     * 新增品牌数据
+     * 新增数据
      * @param brand
      * @return
      */
@@ -82,12 +86,6 @@ public class BrandController {
         if (!ObjectUtils.notEmpty(brand)) {
             return new Result(false, "对象不存在");
         }
-        if (ObjectUtils.isEmpty(brand.getName())) {
-            return new Result(false, "品牌名不能为空");
-        }
-        if (ObjectUtils.isEmpty(brand.getFirstChar())) {
-            return new Result(false, "首字母填写不正确,应为一个字母");
-        }
         try {
             return brandService.saveBrand(brand);
         } catch (Exception e) {
@@ -95,24 +93,20 @@ public class BrandController {
             return new Result(false, "未知的错误信息,请重试");
         }
     }
-
     /**
-     *
-     * @param pageNum
-     * @param pageSize
-     * @return
-     *//*
-    @RequestMapping("/findPage")
-    public PageResult findPage(Integer pageNum,Integer pageSize){
-        return brandService.findPage(pageNum, pageSize);
-    }*/
-
-    /**
-     * 返回全部列表
+     * 返回全部列表(已过时的列表查询方法)
      * @return
      */
     @RequestMapping("/findAll")
     public List<TbBrand> findAll(){
         return brandService.findAll();
     }
+
+    @RequestMapping("/selectOptionList")
+    public List<Map> selectOptionList(){
+        return brandService.selectOptionList();
+    }
+
+
 }
+

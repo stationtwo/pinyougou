@@ -1,10 +1,10 @@
 app.service('brandService', function ($http) {
-    //旧的查询方法
+    //旧的查询方法(弃置)								   
     this.findPage = function (pageNum, pageSize) {
         return $http.get('../brand/findPage.do?pageNum=' + pageNum + '&pageSize=' + pageSize)
     };
 
-    //查询方法
+    //查询方法,读取列表数据绑定到表单中
     this.search = function (pageNum, pageSize, searchEntity) {
         return $http.post('../brand/findPage.do?pageNum=' + pageNum + "&pageSize=" + pageSize, searchEntity)
     };
@@ -29,4 +29,8 @@ app.service('brandService', function ($http) {
         return $http.post('../brand/saveBrand.do', brand)
     };
 
+    //品牌列表
+    this.selectOptionList = function () {
+        return $http.post('../brand/selectOptionList.do')
+    }
 });
