@@ -1,0 +1,64 @@
+<!--angular.module('ngShowcaseApp').controller('ctrl.show.progress', function ($scope) {
+var vm = $scope.vm = {};
+vm.value = 50;
+vm.style = 'progress-bar-info';
+vm.showLabel = true;
+});-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>文件上传</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+
+    <link rel="stylesheet" href="./plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="./plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="./plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- 富文本编辑器 -->
+    <link rel="stylesheet" href="./plugins/kindeditor/themes/default/default.css"/>
+    <script charset="utf-8" src="./plugins/kindeditor/kindeditor-min.js"></script>
+    <script charset="utf-8" src="./plugins/kindeditor/lang/zh_CN.js"></script>
+
+    <script type="text/javascript" src="./plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript" src="./js/base.js"></script>
+    <script type="text/javascript" src="./js/service/goodsService.js"></script>
+    <script type="text/javascript" src="./js/service/uploadService.js"></script>
+    <script type="text/javascript" src="./js/controller/baseController.js"></script>
+    <script type="text/javascript" src="./js/controller/goodsController.js"></script>
+
+
+</head>
+<div ng-class="{progress: true, 'progress-striped': vm.striped}">
+    <div ng-class="['progress-bar', vm.style]" ng-style="{width: vm.value + '%'}">
+        <div ng-if="vm.showLabel">{{vm.value}}%</div>
+    </div>
+</div>
+
+
+<h3>选项</h3>
+<label>进度：<input type="number" class="form-control" ng-model="vm.value"/></label>
+<button class="btn btn-primary" ng-click="vm.value=0">0%</button>
+<button class="btn btn-primary" ng-click="vm.value=20">20%</button>
+<button class="btn btn-primary" ng-click="vm.value=60">60%</button>
+<button class="btn btn-primary" ng-click="vm.value=100">100%</button>
+<hr/>
+<label>斑马纹<input type="checkbox" ng-model="vm.striped"/></label>
+<label>文字<input type="checkbox" ng-model="vm.showLabel"/></label>
+<hr/>
+<label>风格：
+    <select ng-model="vm.style" class="form-control">
+        <option value="progress-bar-success">progress-bar-success</option>
+        <option value="progress-bar-info">progress-bar-info</option>
+        <option value="progress-bar-danger">progress-bar-danger</option>
+        <option value="progress-bar-warning">progress-bar-warning</option>
+    </select>
+</label>

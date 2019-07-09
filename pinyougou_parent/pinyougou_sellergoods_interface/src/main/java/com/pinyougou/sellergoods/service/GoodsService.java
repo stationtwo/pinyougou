@@ -1,6 +1,8 @@
 package com.pinyougou.sellergoods.service;
 import java.util.List;
-import com.pinyougou.pojo.TbGoods;							  
+
+import com.pinyougou.group.GoodsGroup;
+import com.pinyougou.pojo.TbGoods;
 import entity.PageResult;
 import entity.Result;
 /**
@@ -26,11 +28,11 @@ public interface GoodsService {
     PageResult findPage(Integer pageNum, Integer pageSize);
 
     /**
-     * 添加数据
-     * @param goods
+     * 添加数据 组合类
+     * @param goodsGroup
      * @return
      */
-    public Result saveGoods(TbGoods goods);
+    public Result saveGoods(GoodsGroup goodsGroup);
 
     /**
      * 根据id查询一个对象
@@ -61,5 +63,7 @@ public interface GoodsService {
      * @return
      */
     PageResult listGoodsByExample(TbGoods goods, Integer pageNum, Integer pageSize);
+
+
  
 }

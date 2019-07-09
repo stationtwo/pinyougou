@@ -1,14 +1,18 @@
-package com.pinyougou.manager.controller;
-import java.util.List;
+package com.pinyougou.shop.controller;
+
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.group.GoodsGroup;
 import com.pinyougou.pojo.TbGoods;
 import com.pinyougou.sellergoods.service.GoodsService;
 import com.pinyougou.util.ObjectUtils;
 import entity.PageResult;
 import entity.Result;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/goods")
@@ -76,16 +80,23 @@ public class GoodsController {
 	
     /**
      * 新增数据
-     * @param goods
+     * @param goodsGroup
      * @return
      */
     @RequestMapping("/saveGoods")
-    public Result saveGoods(@RequestBody(required = false) TbGoods goods){
-        if (!ObjectUtils.notEmpty(goods)) {
+    public Result saveGoods(@RequestBody(required = false) GoodsGroup goodsGroup){
+        if (ObjectUtils.isNull(goodsGroup)) {
             return new Result(false, "对象不存在");
         }
         try {
-            return goodsService.saveGoods(goods);
+
+/*        //获取登录信息
+        String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+        //设置商家id
+        goodsGroup.getGoods().setSellerId(sellerId);*/
+
+
+            return goodsService.saveGoods(goodsGroup);
         } catch (Exception e) {
             e.printStackTrace();
             return new Result(false, "未知的错误信息,请重试");

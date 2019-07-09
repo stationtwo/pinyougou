@@ -134,11 +134,21 @@ public class ObjectUtils {
     }
 
     /**
+     * 对象非空
      * @param o
      * @return
      */
     public static boolean notEmpty(Object o) {
         return o != null && !"".equals(o) && !"null".equals(o);
+    }
+
+    /**
+     * 对象为空
+     * @param o
+     * @return
+     */
+    public static boolean isNull(Object o) {
+        return !notEmpty(o);
     }
 }
 

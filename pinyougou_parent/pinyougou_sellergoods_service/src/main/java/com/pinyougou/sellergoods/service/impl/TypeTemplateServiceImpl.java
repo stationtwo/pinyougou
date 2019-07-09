@@ -1,5 +1,11 @@
 package com.pinyougou.sellergoods.service.impl;
 import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSON;
+import com.pinyougou.mapper.TbSpecificationOptionMapper;
+import com.pinyougou.pojo.TbSpecificationOption;
+import com.pinyougou.pojo.TbSpecificationOptionExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
@@ -12,10 +18,7 @@ import com.pinyougou.sellergoods.service.TypeTemplateService;
 import com.pinyougou.util.ObjectUtils;
 import com.pinyougou.util.ResultUtils;
 import entity.PageResult;
-import entity.Result;									  
-
-import entity.PageResult;
-
+import entity.Result;
 /**
  * 服务实现层
  * @author jieweili
@@ -26,6 +29,8 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 
     @Autowired
     private TbTypeTemplateMapper typeTemplateMapper;
+    @Autowired
+    private TbSpecificationOptionMapper specificationOptionMapper;
 
 	/**
 	 * 查询全部(过时)
@@ -114,5 +119,22 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
         Page<TbTypeTemplate> page = (Page<TbTypeTemplate>) typeTemplateMapper.selectByExample(example);
         return new PageResult(page.getTotal(),page.getResult());
 
+    }
+
+    @Override
+    public List<Map> listSpecification(Long id) {
+        TbTypeTemplate tbTypeTemplate = typeTemplateMapper.selectByPrimaryKey(id);
+        List<Map> specList = JSON.parseArray(tbTypeTemplate.getSpecIds(), Map.class);
+        for (Map map : specList) {
+            //查询规格选项列表
+            TbSpecificationOptionExample example = new TbSpecificationOptionExample();
+            example.createCriteria().andSpecIdEqualTo(new Long((Integer)map.get("id")));
+            List<TbSpecificationOption> optionList = specificationOptionMapper.selectByExample(example);
+
+            map.put("optionList", optionList);
+
+            // [{"id":27,"text":"网络","optionList":[{""optionName":移动3g"},{"optionName":"移动4g"}]},{"id":32,"text":"机身内存"},{"id":42,"text":"武琳洋"}]
+        }
+        return specList;
     }
 }

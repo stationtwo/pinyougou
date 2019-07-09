@@ -25,7 +25,7 @@ app.service('goodsService', function ($http) {
     };
 
     //新增品牌
-    this.saveGoods = function (goods) {
-        return $http.post('../goods/saveGoods.do', goods)
+    this.save = function (goodsGroup) {
+        return $http.post('../goods/saveGoods.do', goodsGroup)
     };   
 });

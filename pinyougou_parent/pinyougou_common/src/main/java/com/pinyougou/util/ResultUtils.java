@@ -32,6 +32,10 @@ public class ResultUtils{
         return new Result(false,"操作失败");
     }
 
+    public static Result msg(int i,int j) {
+        return i == j ? new Result(true, "操作成功") : new Result(false, "操作失败");
+    }
+
     public static Result msg(List<?> total, int count) {
         if(total.size() == count){
             return new Result(true, count+"条数据操作成功");
